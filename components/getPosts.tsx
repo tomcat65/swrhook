@@ -5,18 +5,19 @@ import { fetchPosts } from '../utilities';
 
 
 function GetPosts() {
-  const url=`http://localhost:4001/api/posts`;
+  const url=`${process.env.NEXT_PUBLIC_DB_HOST}posts`;
   const init={
     headers:{
-      "key":"TangoAlphaVictor65 after all is ok",
+      "key":process.env.NEXT_PUBLIC_API_KEY,
     }
   }
   console.log(url,init)
   const {data, error,isValidating} = useSWR('myPosts',()=>fetchPosts(url,init))
 console.log(useSWR('myPosts',()=>fetchPosts(url,init)))
   console.log('data:',data,"error:",error)
-if (error||data.error) return <p>Loading failed...</p>;
   if (isValidating) return <h1>Loading...</h1>;
+  if (!data||error||data.error) return <p>Loading failed...{data?.error}</p>;
+  
   return (
     <>
     <ul>
