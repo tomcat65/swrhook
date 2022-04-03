@@ -1,2 +1,2 @@
-import {fetchPosts} from './utilities'
-export {fetchPosts}
+import {useFetch} from './utilities'
+export {useFetch}
