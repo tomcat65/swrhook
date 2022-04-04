@@ -1,2 +1,2 @@
-import {useFetch} from './utilities'
-export {useFetch}
+import {useFetch,useComments,usePosts} from './utilities'
+export {useFetch,useComments,usePosts}
