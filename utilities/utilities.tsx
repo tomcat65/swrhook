@@ -1,5 +1,6 @@
 import useSWR from "swr"
-//import { RequestInit } from "../typings"
+import { Fallback } from "../typings"
+
 
 
 
@@ -24,12 +25,27 @@ export const useFetch=async (resource:string,config:object={headers:{
   return await data.json()
 }
 
-export const baseURL=process.env.NEXT_PUBLIC_DB_HOST
+
+
 export const usePosts=()=>{
+
   const {data:posts, error:postsError} = useSWR('posts')
   return {posts,postsError}
 }
 export const useComments=()=>{
   const {data:comments, error:commentsError} = useSWR('comments')
   return {comments,commentsError}
+}
+export async function getStaticProps () {
+  // `getStaticProps` is executed on the server side.
+  const posts = await useFetch('posts')
+  const comments= await useFetch('comments')
+  return {
+    props: {
+      fallback: {
+        'posts': posts,
+        'comments':comments
+      }
+    }
+  }
 }

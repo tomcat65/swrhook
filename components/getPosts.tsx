@@ -1,7 +1,7 @@
-//import {GetStaticProps} from 'next';
+import {GetStaticProps} from 'next';
 
 
-import { useComments, usePosts } from '../utilities';
+import { useComments, useFetch, usePosts } from '../utilities';
 //import { useFetch } from '../utilities';
 
 function GetPosts() {
@@ -41,15 +41,6 @@ function GetPosts() {
   )
 }
 
-// export const getStaticProps:GetStaticProps = async () => {
-//   const url=`${process.env.NEXT_PUBLIC_DB_HOST}posts`;
-  
-//     return {
-//     props:{
-//      posts:await useFetch(url),
-//     }
-//   }
-// }
 
-export default GetPosts;
 
+export default GetPosts
