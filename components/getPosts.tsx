@@ -1,9 +1,8 @@
 //import {GetStaticProps} from 'next';
 
-import useSWR from 'swr'
+
 import { useComments, usePosts } from '../utilities';
 //import { useFetch } from '../utilities';
-
 
 function GetPosts() {
   const {posts,postsError}=usePosts()
@@ -24,7 +23,7 @@ function GetPosts() {
            <li >{post.title}</li>
            <h4>comments:</h4>
            <ul key={`coments${post.id}`}>
-            {comments.filter(c=>c.postId==post.id).map((comment: { comment: string|undefined; id:number;author:string }) => (
+            {comments.filter((c: { postId: number; })=>c.postId==post.id).map((comment: { comment: string|undefined; id:number;author:string }) => (
 <div key={comment.id}>
   
             <li >{comment.comment}<br/>

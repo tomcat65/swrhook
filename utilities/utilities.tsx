@@ -1,16 +1,22 @@
 import useSWR from "swr"
+//import { RequestInit } from "../typings"
 
-export const useFetch=async (resource:string)=>{
- 
-  const init:RequestInit={
-    headers:{
-      "key":process.env.NEXT_PUBLIC_API_KEY
-    }
-  }
-  const data=await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}${resource}`,init)
+
+
+interface Error {
+  message:string
+  info?:string
+  status?:string|number
+}
+
+
+export const useFetch=async (resource:string,config:object={headers:{
+  key:process.env.NEXT_PUBLIC_API_KEY
+}})=>{
+   const data=await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}${resource}`,config)
   if (!data.ok) {
-    const error:Error = new Error('An error occurred while fetching the data.')
-    // Attach extra info to the error object.
+    const error:Error= new Error('An error occurred while fetching the data.')
+    
     error.info = await data.json()
     error.status = data.status
     throw error
