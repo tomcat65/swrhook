@@ -1,5 +1,5 @@
 import useSWR from "swr"
-import { Fallback } from "../typings"
+
 
 
 
@@ -35,17 +35,4 @@ export const usePosts=()=>{
 export const useComments=()=>{
   const {data:comments, error:commentsError} = useSWR('comments')
   return {comments,commentsError}
-}
-export async function getStaticProps () {
-  // `getStaticProps` is executed on the server side.
-  const posts = await useFetch('posts')
-  const comments= await useFetch('comments')
-  return {
-    props: {
-      fallback: {
-        'posts': posts,
-        'comments':comments
-      }
-    }
-  }
 }

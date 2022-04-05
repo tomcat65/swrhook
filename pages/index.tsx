@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import GetPosts from '../components/getPosts'
 import styles from '../styles/Home.module.css'
 import { useFetch } from '../utilities'
-import { SWRConfig, SWRConfiguration } from 'swr'
-import { Fallback } from '../typings'
+import { SWRConfig} from 'swr'
+
 
 
 
@@ -15,8 +15,7 @@ const Home: NextPage = ({fallback}:any) => {
      
       <h1>SWR hook use</h1>
       <SWRConfig value={{fallback}}>
-        {console.log('fallback:',fallback)}
-         <GetPosts />
+                <GetPosts />
       </SWRConfig>
      
       {/* <GetComments /> */}
